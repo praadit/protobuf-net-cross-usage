@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcClient";
+
+package GrpcServer.Models.Protos;
+
+message LoginData {
+   string GameToken = 1;
+}
+message LoginRequest {
+   string Token = 1;
+}
+message LoginResponse {
+   LoginData LoginData = 1;
+   int64 Timestamps = 2;
+}
+service LoginService {
+   rpc Login (LoginRequest) returns (LoginResponse);
+}
