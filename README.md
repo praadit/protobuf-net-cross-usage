@@ -22,3 +22,5 @@ installed library
   - Google.Protobuf
   - Grpc.Net.Client
   - Grpc.Tools
+
+package name of .proto files and namespace of proto model in server must be the same
