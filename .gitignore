@@ -3,3 +3,5 @@ GrpcClient/bin
 GrpcClient/obj
 GrpcServer/bin
 GrpcServer/obj
+HttpServer/bin
+HttpServer/obj
