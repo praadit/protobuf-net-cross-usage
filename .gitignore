@@ -1,3 +1,4 @@
+GrpcClient/BenchmarkDotNet.Artifacts
 GrpcClient/bin
 GrpcClient/obj
 GrpcServer/bin

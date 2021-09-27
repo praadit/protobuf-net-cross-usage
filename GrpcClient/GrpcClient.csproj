@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Protobuf Include="Protos\login.proto" GrpcServices="Client"/>
+    <Protobuf Include="Protos\playerauth.proto" GrpcServices="Client"/>
+    <Protobuf Include="Protos\gamedata.proto" GrpcServices="Client"/>
+    <!-- <Protobuf Include="Protos\login.proto" GrpcServices="Client"/> -->
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.18.0"/>
@@ -14,6 +15,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.1"/>
   </ItemGroup>
-
 </Project>

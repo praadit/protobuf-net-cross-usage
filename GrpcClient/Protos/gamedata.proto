@@ -1,0 +1,257 @@
+syntax = "proto3";
+package AgateStudio.GameServer.ProjectCore.Core.Services.Grpc.Interfaces;
+option csharp_namespace = "GrpcClient";
+
+message AthleteData {
+   string AthleteID = 1;
+   string AthleteName = 2;
+   string AthleteNickName = 3;
+   string ClubID = 4;
+   string ImageCode = 5;
+   double AthletePointAccumulation = 6;
+   double Credits = 7;
+   double AthletePrice = 8;
+   PositionType Position = 9;
+   string ActualPosition = 10;
+   bool IsActive = 11;
+}
+enum BannerType {
+   Global = 0;
+   SpecificMatch = 1;
+   SpecificContest = 2;
+}
+message BaseResponse_GetSpesificMatchResultResponse {
+   GetSpesificMatchResultResponse Data = 1;
+   string ErrorCode = 2;
+}
+message ClubData {
+   string ClubID = 1;
+   string ClubName = 2;
+   string ClubShortName = 3;
+   string LogoImageCode = 4;
+   string JerseyImageCode = 5;
+   string GKJerseyImageCode = 6;
+}
+message CompetitionData {
+   string CompetitionID = 1;
+   string CompetitionFullName = 2;
+   string CompetitionName = 3;
+   string ImageCode = 4;
+   bool IsActive = 5;
+}
+message ContestData {
+   string ContestID = 1;
+   string MatchID = 2;
+   string Category = 3;
+   int32 EntryCount = 4;
+   int32 EntryFee = 5;
+   int32 EntryMax = 6;
+   int32 EntryCurrent = 7;
+   int32 EligibleWinners = 8;
+   int32 TotalPrizePool = 9;
+   PrizeType PrizeType = 10;
+   string BonusPrize = 11;
+   string ContestState = 12;
+   bool IsGuaranteed = 13;
+   bool IsActive = 14;
+   bool IsPrivate = 15;
+   bool IsUnlimited = 16;
+   int64 EntryFeeCurrencyID = 17;
+   string PresetID = 18;
+   string SponsorID = 19;
+   string SponsorRewardPresetID = 20;
+   string ContestCode = 21;
+   bool IsCancelled = 22;
+   int64 PlatformContestID = 23;
+   bool AutoRecreate = 24;
+   int32 EntryMinPercentage = 25;
+   int32 EntryLockPercentage = 26;
+}
+message ContestEntryData {
+   int32 Id = 1;
+   string MatchID = 2;
+   string ContestID = 3;
+   string TeamID = 4;
+   string PlayerID = 5;
+   int32 Score = 6;
+   int32 Rank = 7;
+}
+message ContestLeaderboardDataModel {
+   string ContestID = 1;
+   string Leaderboard = 2;
+}
+message GameDataResponse {
+   map<string,AthleteData> Athletes = 1;
+   map<string,ClubData> Clubs = 2;
+   map<string,CompetitionData> Competitions = 3;
+   map<string,ContestData> Contests = 4;
+   map<string,ContestLeaderboardDataModel> ContestLeaderboard = 5;
+   map<string,ContestEntryData> ContestEntries = 6;
+   map<string,GroupData> Groups = 7;
+//    map<string,DictionaryGroupMemberData> GroupMembers = 8;
+   map<string,MatchData> Matches = 9;
+//    message DictionaryMatchAthletePreperation{
+//        map<string,MatchAthletePreparationData> MatchAthletePreperation = 1;
+//    }
+//    map<string,DictionaryMatchAthletePreperation> MatchAthletePreparations = 10;
+//    map<string,DictionaryMatchAthleteResult> MatchAthleteResults = 11;
+   map<string,PlayerData> Players = 12;
+   map<string,PresetData> Presets = 13;
+   map<string,PresetTypeData> PresetTypes = 14;
+   map<string,SponsorData> Sponsors = 15;
+//    map<string,DictionarySponsorBanner> SponsorBanners = 16;
+   map<string,SponsorRewardPresetData> SponsorRewardPreset = 17;
+   map<string,TeamData> Teams = 18;
+}
+message DictionaryMatchAthleteResult{
+    map<string,MatchAthleteResultData> MatchAthleteResult = 1;
+}
+message DictionaryGroupMemberData{
+    map<string,GroupMemberData> GroupMember = 1;
+}
+message DictionarySponsorBanner{
+    map<string,SponsorBannerData> SponsorBanner = 1;
+}
+message GetSpesificMatchResultResponse {
+   GameDataResponse GameData = 1;
+}
+message GroupData {
+   string GroupID = 1;
+   int64 PlatformGroupID = 2;
+   string GroupName = 3;
+   string GroupAdminID = 4;
+   int32 GroupStatus = 5;
+   string GroupContests = 6;
+   repeated string GroupContestList = 7;
+   GroupLeaderboardCache GroupLeaderboard = 8;
+}
+message GroupLeaderboardCache {
+}
+message GroupMemberData {
+   int32 ID = 1;
+   string GroupID = 2;
+   string PlayerID = 3;
+   MemberAccessLevel AccessLevel = 4;
+   int32 MemberStatus = 5;
+   int32 MemberScore = 6;
+   int32 MemberRank = 7;
+}
+message MatchAthletePreparationData {
+   int32 Id = 1;
+   string MatchID = 2;
+   string AthleteID = 3;
+   double SelectRatio = 4;
+   double CaptainRatio = 5;
+   double ViceCaptainRatio = 6;
+}
+message MatchAthleteResultData {
+   string MatchID = 1;
+   string AthleteID = 2;
+   int32 AthletePoint = 3;
+}
+message MatchData {
+   string MatchID = 1;
+   string HomeClubID = 2;
+   string HighlightedContestID = 3;
+   int32 HomeClubScore = 4;
+   string AwayClubID = 5;
+   int32 AwayClubScore = 6;
+   int64 MatchTime = 7;
+   int64 NextUpdate = 8;
+   MatchState MatchState = 9;
+   int32 MatchContestCount = 10;
+   string CompetitionID = 11;
+   bool IsCancelled = 12;
+}
+message MatchResultRequest {
+   string MatchID = 1;
+}
+enum MatchState {
+   Upcoming = 0;
+   Live = 1;
+   CalculatingScore = 2;
+   CalculatingTeamScore = 3;
+   ResolvingScore = 4;
+   ResolvingRank = 5;
+   RankCompleted = 6;
+   MatchCompleted = 7;
+}
+enum MemberAccessLevel {
+   Admin = 0;
+   Member = 1;
+}
+message PlayerData {
+   string PlayerID = 1;
+   int32 PlayerLevel = 2;
+   int64 RegisterTime = 3;
+   int32 MatchCount = 4;
+   int32 ContestCount = 5;
+   int32 ContestWinCount = 6;
+   int32 TotalWinnings = 7;
+   int32 TotalEntryFeeSpent = 8;
+   int32 TutorialState = 9;
+   string PlayerName = 10;
+   int64 PlayerJoinTime = 11;
+}
+enum PositionType {
+   STK = 0;
+   MID = 1;
+   DEF = 2;
+   GK = 3;
+}
+message PresetData {
+   string PresetID = 1;
+   string PresetName = 2;
+   string Category = 3;
+   string ImageCode = 4;
+}
+message PresetTypeData {
+   string PresetTypeID = 1;
+   string Name = 2;
+   int32 VisualOrder = 3;
+   string ImageCode = 4;
+}
+enum PrizeType {
+   Diamond = 0;
+   Item = 1;
+}
+enum SourceTag {
+   ZERO = 0; // proto3 requires a zero value as the first item (it can be named anything)
+   ManualInput = -1;
+   LapangBola = 1;
+}
+message SponsorBannerData {
+   string SponsorID = 1;
+   string BannerImageCode = 2;
+   BannerType BannerType = 3;
+   string InternalURL = 4;
+   int64 StartPromotionDate = 5;
+   int64 EndPromotionDate = 6;
+   string AdditionalID = 7;
+}
+message SponsorData {
+   string SponsorID = 1;
+   string SponsorName = 2;
+   string ImageCode = 3;
+   string Caption = 4;
+   string FieldImageCode = 5;
+}
+message SponsorRewardPresetData {
+   string SponsorRewardPresetID = 1;
+   string SponsorID = 2;
+   string Name = 3;
+   string RewardData = 4;
+   string TermCondition = 5;
+}
+message TeamData {
+   string MatchID = 1;
+   string TeamID = 2;
+   string PlayerID = 3;
+   string TeamSetup = 4;
+   string Captain = 5;
+   string ViceCaptain = 6;
+   int32 TeamOrder = 7;
+}
+service MatchControllerGrpcService {
+   rpc GetMatchResult (MatchResultRequest) returns (BaseResponse_GetSpesificMatchResultResponse);
+}

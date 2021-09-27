@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcClient";
+
+package AgateStudio.GameServer.ProjectCore.Core.Services.Grpc.Interfaces;
+
+message BaseResponse_GetLoginResponse {
+   GetLoginResponse Data = 1;
+   string ErrorCode = 2;
+}
+message GetLoginResponse {
+   LoginDataResponse LoginData = 1;
+   PlayerDataLogin PlayerData = 2;
+}
+message LoginDataResponse {
+   string GameToken = 1;
+   bool IsPremiumToggle = 2;
+   int64 LoginTime = 3;
+}
+message LoginRequest {
+   string Token = 1;
+}
+message PlayerDataLogin {
+   string PlayerID = 1;
+   string PlayerName = 2;
+   bool PhoneNumberStatus = 3;
+   int32 TutorialState = 4;
+   int64 CreatedAt = 5;
+}
+service PlayerAuthGrpcService {
+   rpc Login (LoginRequest) returns (BaseResponse_GetLoginResponse);
+}
